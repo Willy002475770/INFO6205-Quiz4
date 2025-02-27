@@ -89,6 +89,8 @@ public class BST<Key extends Comparable<Key>, Value>{
         // Student TODO
         // return 
         // we are going to do same number of operations for get and contains, so why not re-use the get method here
+        return get(key) != null;
+
     }
 
     /**
@@ -106,7 +108,14 @@ public class BST<Key extends Comparable<Key>, Value>{
     private Value get(Node x, Key key) {
         if (key == null) throw new IllegalArgumentException("calls get() with a null key");
         // Student TODO
-       
+
+        if (x == null) return null;
+
+        int cmp = key.compareTo(x.key);
+        if (cmp < 0) return get(x.left, key);
+        else if (cmp > 0) return get(x.right, key);
+        else return x.val;
+
     }
 
 
